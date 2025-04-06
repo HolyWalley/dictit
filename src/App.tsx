@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import SearchBar from './components/SearchBar';
 import ResultsList from './components/ResultsList';
 import SavedPairs from './components/SavedPairs';
+import PWAInstallPrompt from './components/PWAInstallPrompt';
 import { useDictionary } from './hooks/useDictionary';
 import { useSavedPairs } from './hooks/useSavedPairs';
 
@@ -12,6 +13,7 @@ function App() {
 
   return (
     <div className="container">
+      <PWAInstallPrompt />
       <h1>Russian-Italian Dictionary</h1>
       
       <div className="tabs">

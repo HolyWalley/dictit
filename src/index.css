@@ -154,6 +154,51 @@ input {
   cursor: not-allowed;
 }
 
+/* PWA Styles */
+.pwa-prompt {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 1rem;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+}
+
+.pwa-message {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.pwa-button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.2s;
+}
+
+.pwa-button:hover {
+  background-color: #45a049;
+}
+
+.pwa-button.secondary {
+  background-color: #666;
+}
+
+.pwa-button.secondary:hover {
+  background-color: #555;
+}
+
 @media (prefers-color-scheme: light) {
   .tab {
     color: #666;
