@@ -1,6 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { registerSW } from 'virtual:pwa-register';
 
+// Add TypeScript declaration for the global window property
+declare global {
+  interface Window {
+    updateServiceWorker?: (reloadPage?: boolean) => Promise<void>;
+  }
+}
+
 const PWAInstallPrompt: React.FC = () => {
   const [needRefresh, setNeedRefresh] = useState(false);
   const [offlineReady, setOfflineReady] = useState(false);
@@ -16,6 +23,9 @@ const PWAInstallPrompt: React.FC = () => {
         setOfflineReady(true);
       }
     });
+
+    // Store updateSW function in a ref so it can be used in event handlers
+    window.updateServiceWorker = updateSW;
 
     // Listen for beforeinstallprompt event
     window.addEventListener('beforeinstallprompt', (e) => {
@@ -49,7 +59,12 @@ const PWAInstallPrompt: React.FC = () => {
   };
 
   const handleRefresh = () => {
-    window.location.reload();
+    if (window.updateServiceWorker) {
+      window.updateServiceWorker(true);
+    } else {
+      window.location.reload();
+    }
+    setNeedRefresh(false);
   };
 
   if (!needRefresh && !offlineReady && !installPrompt) return null;
@@ -67,9 +82,12 @@ const PWAInstallPrompt: React.FC = () => {
       
       {needRefresh && (
         <div className="pwa-message">
-          New content available, click to refresh.
+          New content available, click to update.
           <button className="pwa-button" onClick={handleRefresh}>
-            Refresh
+            Update
+          </button>
+          <button className="pwa-button secondary" onClick={() => setNeedRefresh(false)}>
+            Dismiss
           </button>
         </div>
       )}
