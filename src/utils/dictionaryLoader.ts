@@ -11,7 +11,7 @@ export async function loadDictionary(): Promise<DictionaryEntry[]> {
 
     // If not in cache, fetch from file
     console.log('Fetching dictionary from file');
-    const response = await fetch('/russian_italian_dictionary.csv');
+    const response = await fetch('./russian_italian_dictionary.csv');
     const text = await response.text();
     
     const parsedData = parseCsv(text);

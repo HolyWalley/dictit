@@ -1,6 +1,34 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
+import { resolve } from 'path'
+import fs from 'fs'
+
+// Plugin to copy the dictionary file to the build output
+const copyDictionaryPlugin = () => {
+  return {
+    name: 'copy-dictionary-plugin',
+    generateBundle() {
+      // Check if the dictionary file exists
+      const dictionaryPath = resolve(process.cwd(), 'russian_italian_dictionary.csv')
+      if (fs.existsSync(dictionaryPath)) {
+        // Read the file content
+        const content = fs.readFileSync(dictionaryPath, 'utf-8')
+        
+        // Add the file to the build output
+        this.emitFile({
+          type: 'asset',
+          fileName: 'russian_italian_dictionary.csv',
+          source: content
+        })
+        
+        console.log('Dictionary file copied to build output')
+      } else {
+        console.warn('Dictionary file not found at:', dictionaryPath)
+      }
+    }
+  }
+}
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -27,7 +55,12 @@ export default defineConfig({
           }
         ]
       },
-      includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'mask-icon.svg'],
+      includeAssets: [
+        'favicon.ico', 
+        'apple-touch-icon.png', 
+        'mask-icon.svg',
+        'russian_italian_dictionary.csv'  // Include the dictionary in PWA assets
+      ],
       manifest: {
         name: 'Russian-Italian Dictionary',
         short_name: 'RU-IT Dict',
@@ -56,4 +89,12 @@ export default defineConfig({
       }
     })
   ],
+  copyDictionaryPlugin()
+  ],
+  build: {
+    rollupOptions: {
+      // Make sure the dictionary file is included in the build
+      external: []
+    }
+  }
 })
