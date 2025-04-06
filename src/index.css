@@ -94,6 +94,8 @@ input {
   width: 30px;
   height: 30px;
   border-radius: 50%;
+  line-height: 0; /* This helps center the + and × symbols vertically */
+  padding-bottom: 2px; /* Small adjustment to visually center the content */
 }
 
 .save-button:hover {
