@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import SearchBar from './components/SearchBar';
 import ResultsList from './components/ResultsList';
 import SavedPairs from './components/SavedPairs';
@@ -15,15 +15,15 @@ function App() {
     <div className="container">
       <PWAInstallPrompt />
       <h1>Russian-Italian Dictionary</h1>
-      
+
       <div className="tabs">
-        <button 
+        <button
           className={`tab ${activeTab === 'search' ? 'active' : ''}`}
           onClick={() => setActiveTab('search')}
         >
           Search
         </button>
-        <button 
+        <button
           className={`tab ${activeTab === 'saved' ? 'active' : ''}`}
           onClick={() => setActiveTab('saved')}
         >
@@ -33,19 +33,19 @@ function App() {
 
       {activeTab === 'search' ? (
         <>
-          <SearchBar 
-            searchTerm={searchTerm} 
-            setSearchTerm={setSearchTerm} 
-            isLoading={isLoading} 
+          <SearchBar
+            searchTerm={searchTerm}
+            setSearchTerm={setSearchTerm}
+            isLoading={isLoading}
           />
-          <ResultsList 
-            results={results} 
+          <ResultsList
+            results={results}
             isLoading={isLoading}
             onSavePair={(result) => savePair(result.item)}
           />
         </>
       ) : (
-        <SavedPairs 
+        <SavedPairs
           savedPairs={savedPairs}
           onRemovePair={removePair}
           onExport={exportToAnki}
