@@ -21,7 +21,6 @@ function App() {
   return (
     <div className="container">
       <PWAInstallPrompt />
-      <h1>Russian-Italian Dictionary</h1>
 
       <div className="tabs">
         <button
