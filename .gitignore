@@ -49,5 +49,4 @@ coverage
 
 # Dictionary data files
 dictionary_extracted/
-*.csv
 *.tar.xz

@@ -14,14 +14,14 @@ const copyDictionaryPlugin = () => {
       if (fs.existsSync(dictionaryPath)) {
         // Read the file content
         const content = fs.readFileSync(dictionaryPath, 'utf-8')
-        
+
         // Add the file to the build output
         this.emitFile({
           type: 'asset',
           fileName: 'russian_italian_dictionary.csv',
           source: content
         })
-        
+
         console.log('Dictionary file copied to build output')
       } else {
         console.warn('Dictionary file not found at:', dictionaryPath)
@@ -56,8 +56,8 @@ export default defineConfig({
         ]
       },
       includeAssets: [
-        'favicon.ico', 
-        'apple-touch-icon.png', 
+        'favicon.ico',
+        'apple-touch-icon.png',
         'mask-icon.svg',
         'russian_italian_dictionary.csv'  // Include the dictionary in PWA assets
       ],
@@ -88,7 +88,7 @@ export default defineConfig({
         ]
       }
     }),
-    copyDictionaryPlugin()
+    // copyDictionaryPlugin()
   ],
   build: {
     rollupOptions: {
