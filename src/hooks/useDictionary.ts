@@ -48,11 +48,13 @@ export function useDictionary() {
     const fuse = new Fuse(searchableItems, fuseOptions);
     const searchResults = fuse.search(debouncedSearchTerm);
 
-    // Transform back to our expected format
-    const transformedResults = searchResults.map(result => ({
-      item: result.item.originalEntry,
-      score: result.score || 0
-    }));
+    // Transform back to our expected format and limit to top 10 matches
+    const transformedResults = searchResults
+      .map(result => ({
+        item: result.item.originalEntry,
+        score: result.score || 0
+      }))
+      .slice(0, 10);
 
     setResults(transformedResults);
   }, [dictionary, debouncedSearchTerm]);
