@@ -7,7 +7,7 @@ import { useSavedPairs } from './hooks/useSavedPairs';
 
 function App() {
   const { searchTerm, setSearchTerm, results, isLoading } = useDictionary();
-  const { savedPairs, savePair, removePair } = useSavedPairs();
+  const { savedPairs, savePair, removePair, exportToAnki } = useSavedPairs();
   const [activeTab, setActiveTab] = useState<'search' | 'saved'>('search');
 
   return (
@@ -46,6 +46,7 @@ function App() {
         <SavedPairs 
           savedPairs={savedPairs}
           onRemovePair={removePair}
+          onExport={exportToAnki}
         />
       )}
     </div>
