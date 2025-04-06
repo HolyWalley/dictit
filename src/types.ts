@@ -14,3 +14,9 @@ export interface SavedPair {
   italian: string[];
   savedAt: number;
 }
+
+export interface SynonymSelectionState {
+  isOpen: boolean;
+  entry: DictionaryEntry | null;
+  selectedSynonyms: string[];
+}

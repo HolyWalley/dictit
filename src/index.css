@@ -199,6 +199,92 @@ input {
   background-color: #555;
 }
 
+/* Synonym Selection Popup Styles */
+.synonym-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.synonym-popup {
+  background-color: #242424;
+  border-radius: 8px;
+  padding: 20px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.synonym-popup h3 {
+  margin-top: 0;
+  color: rgba(255, 255, 255, 0.87);
+}
+
+.russian-word {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: rgba(255, 255, 255, 0.87);
+}
+
+.synonym-list {
+  max-height: 300px;
+  overflow-y: auto;
+  margin-bottom: 20px;
+  border: 1px solid #333;
+  border-radius: 4px;
+  padding: 10px;
+}
+
+.synonym-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 0;
+  cursor: pointer;
+}
+
+.synonym-item input {
+  margin-right: 10px;
+  width: auto;
+}
+
+.synonym-popup-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.synonym-popup-button {
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  border: none;
+}
+
+.synonym-popup-button.primary {
+  background-color: #4caf50;
+  color: white;
+}
+
+.synonym-popup-button.primary:disabled {
+  background-color: #2c5e2e;
+  cursor: not-allowed;
+}
+
+.synonym-popup-button.secondary {
+  background-color: #333;
+  color: #fff;
+  border: 1px solid #555;
+}
+
 @media (prefers-color-scheme: light) {
   .tab {
     color: #666;
@@ -240,5 +326,33 @@ h1 {
   }
   .italian {
     color: #666;
+  }
+  
+  /* Light mode styles for synonym popup */
+  .synonym-popup {
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .synonym-popup h3 {
+    color: #213547;
+  }
+  
+  .russian-word {
+    color: #213547;
+  }
+  
+  .synonym-list {
+    border-color: #ddd;
+  }
+  
+  .synonym-popup-button.secondary {
+    background-color: #f5f5f5;
+    color: #213547;
+    border: 1px solid #ddd;
+  }
+  
+  .synonym-popup-button.primary:disabled {
+    background-color: #a5d6a7;
   }
 }

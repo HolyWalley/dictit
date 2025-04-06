@@ -20,19 +20,27 @@ export function useSavedPairs() {
   const savePair = (entry: DictionaryEntry) => {
     setSavedPairs(prev => {
       // Check if this pair is already saved
-      const alreadySaved = prev.some(pair => pair.russian === entry.russian);
-      if (alreadySaved) {
-        return prev;
-      }
+      const existingPairIndex = prev.findIndex(pair => pair.russian === entry.russian);
       
-      // Add new pair
-      const newPair: SavedPair = {
-        id: Date.now().toString(),
-        russian: entry.russian,
-        italian: entry.italian,
-        savedAt: Date.now()
-      };
-      return [...prev, newPair];
+      if (existingPairIndex >= 0) {
+        // If it exists, update it with the new selection
+        const updatedPairs = [...prev];
+        updatedPairs[existingPairIndex] = {
+          ...updatedPairs[existingPairIndex],
+          italian: entry.italian,
+          savedAt: Date.now()
+        };
+        return updatedPairs;
+      } else {
+        // Add new pair
+        const newPair: SavedPair = {
+          id: Date.now().toString(),
+          russian: entry.russian,
+          italian: entry.italian,
+          savedAt: Date.now()
+        };
+        return [...prev, newPair];
+      }
     });
   };
 
