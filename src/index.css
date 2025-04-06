@@ -21,15 +21,23 @@ body {
 
 #root {
   max-width: 1280px;
+  width: 100%;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 1rem;
   text-align: center;
+}
+
+@media (min-width: 640px) {
+  #root {
+    padding: 2rem;
+  }
 }
 
 .container {
   width: 100%;
   max-width: 800px;
   margin: 0 auto;
+  padding: 0 0.5rem;
 }
 
 .search-container {
@@ -39,11 +47,18 @@ body {
 input {
   width: 100%;
   padding: 0.8rem;
-  font-size: 1.2rem;
+  font-size: 1rem;
   border-radius: 4px;
   border: 1px solid #ccc;
   background-color: #1a1a1a;
   color: white;
+  box-sizing: border-box;
+}
+
+@media (min-width: 640px) {
+  input {
+    font-size: 1.2rem;
+  }
 }
 
 .results-container {
@@ -56,11 +71,17 @@ input {
 }
 
 .result-item {
-  padding: 0.5rem;
+  padding: 0.75rem 0.5rem;
   border-bottom: 1px solid #333;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
+}
+
+@media (min-width: 640px) {
+  .result-item {
+    align-items: center;
+  }
 }
 
 .result-item:last-child {
@@ -70,15 +91,24 @@ input {
 .result-content {
   flex: 1;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+}
+
+@media (min-width: 640px) {
+  .result-content {
+    flex-direction: row;
+    justify-content: space-between;
+  }
 }
 
 .russian {
   font-weight: bold;
+  margin-right: 1rem;
 }
 
 .italian {
   color: #aaa;
+  word-break: break-word;
 }
 
 .save-button, .remove-button {

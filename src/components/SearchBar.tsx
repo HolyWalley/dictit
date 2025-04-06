@@ -11,7 +11,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ searchTerm, setSearchTerm, isLoad
     <div className="search-container">
       <input
         type="text"
-        placeholder={isLoading ? "Loading dictionary..." : "Search for Russian or Italian words..."}
+        placeholder={isLoading ? "Loading dictionary..." : "Search Russian or Italian..."}
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         disabled={isLoading}
