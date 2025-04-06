@@ -87,9 +87,8 @@ export default defineConfig({
           }
         ]
       }
-    })
-  ],
-  copyDictionaryPlugin()
+    }),
+    copyDictionaryPlugin()
   ],
   build: {
     rollupOptions: {
